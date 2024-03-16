@@ -13,7 +13,15 @@ def get_data():
 def get_rhines_times():
     """Return a list of Jennifer Rhines' race times"""
     races = get_data()
-    pass
+    rhines_times = []
+
+    def get_time(line):
+        return re.findall(r'\d{}2:\s+', line)[0]
+    
+    for line in races.splitlines():
+        if 'Jennifer Rhines' in line:
+            rhines_times.append(get_time(line))
+    return rhines_times
 
 def get_average():
     """Return Jennifer Rhines' average race time in the format:
